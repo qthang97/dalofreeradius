@@ -1,0 +1,39 @@
+version: '3.0'
+services:
+    mariadb_hcm_mobile: #<--TODO EDIT
+        image: mariadb:10.4
+        container_name: mariadb_hcm_mobile #<--TODO EDIT
+        volumes:
+            - ./db:/var/lib/mysql 
+        environment:
+            TZ: "Asia/Ho_Chi_Minh"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+            MYSQL_ROOT_PASSWORD: "rootpwd" #<--TODO EDIT
+            MYSQL_USER: 'radius' #<--TODO EDIT
+            MYSQL_PASSWORD: 'RadiusPass' #<--TODO EDIT
+            MYSQL_DATABASE: 'radiusdb' #<--TODO EDIT
+        ports:
+            - '33063:3306' #<--TODO EDIT
+        restart: unless-stopped
+    radius_hcm_mobile:  #<--TODO EDIT
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        container_name: radius_hcm_mobile #<--TODO EDIT
+        environment:
+           TZ: "Asia/Ho_Chi_Minh"
+           MYSQL_HOST: "mariadb_hcm_mobile" #<--TODO EDIT
+           MYSQL_PORT: "3306"
+           MYSQL_DATABASE: "radiusdb"
+           MYSQL_USER: "radius"
+           MYSQL_PASSWORD: "RadiusPass"
+           MYSQL_ROOT_PASSWORD: "rootpwd"
+        ports:
+            - '8080:80' #<--TODO EDIT
+            - '18133:1813/udp' #<--TODO EDIT
+            - '18123:1812/udp' #<--TODO EDIT
+        depends_on:
+            - 'mariadb_hcm_mobile'  #<--TODO EDIT
+        volumes:
+            - ./freeradius/clients.conf:/etc/freeradius/3.0/clients.conf
+        restart: unless-stopped
