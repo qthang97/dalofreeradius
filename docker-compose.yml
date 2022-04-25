@@ -37,4 +37,5 @@ services:
         volumes:
             - ./freeradius/clients.conf:/etc/freeradius/3.0/clients.conf
             - ./mng-import-users.php:/var/www/html/daloradius/mng-import-users.php
+            - ./mng-del.php:/var/www/html/daloradius/mng-del.php
         restart: always
