@@ -67,6 +67,13 @@
                                                 $pass = trim($dbSocket->escapeSimple($users[1]));
                                                 $userinfo = trim($dbSocket->escapeSimple($users[2]));
 						$groupinfo = trim($dbSocket->escapeSimple($users[3]));
+
+                                                // perform further cleanup on $groupinfo to make sure it doesn't contain invalid chars like \r\n
+                                                // whether they are literal or encoded
+                                                $groupinfo = str_replace("\\r", "", $groupinfo);
+                                                $groupinfo = str_replace("\\n", "", $groupinfo);
+                                                $groupinfo = str_replace(chr(0xC2), "", $groupinfo);
+                                                $groupinfo = str_replace(chr(0xA0), "", $groupinfo);
                                                 
 						// perform further cleanup on $pass to make sure it doesn't contain invalid chars like \r\n
                                                 // whether they are literal or encoded
@@ -93,7 +100,8 @@
                                                                 $userid=$row[0];
                                                         }
                                                 };
-
+						
+						//add username
                                                 if($usercheck!=1){
                                                         // insert username/password into radcheck
                                                         $sql = "INSERT INTO ".$configValues['CONFIG_DB_TBL_RADCHECK'].
@@ -126,7 +134,7 @@
                                                         $success=1;
 						}
 
-                                                //update value
+                                                //update value if username exist
                                                 if($usercheck==1){
                                                         //get firstname in userinfo from username
                                                         $sql="SELECT firstname FROM ".$configValues['CONFIG_DB_TBL_DALOUSERINFO'].' WHERE username="'.$user.'"';
