@@ -20,6 +20,10 @@ services:
             context: .
             dockerfile: ./Dockerfile
         container_name: radius_hcm_mobile #<--TODO EDIT
+        logging:
+           options:
+            max-size: "2000m"
+            max-file: "3"
         environment:
            TZ: "Asia/Ho_Chi_Minh"
            MYSQL_HOST: "mariadb_hcm_mobile" #<--TODO EDIT
