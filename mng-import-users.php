@@ -90,8 +90,8 @@
                                                         $pass = "Accept";
                                                 }
                                                 
-                                                //check username
-                                                $sql = "SELECT ID,USERNAME FROM ".$configValues['CONFIG_DB_TBL_DALOUSERINFO'];
+                                                //check username exist
+                                                 $sql = "SELECT ID,USERNAME FROM ".$configValues['CONFIG_DB_TBL_DALOUSERINFO'];
                                                 $res = $dbSocket->query($sql);
                                                 $usercheck=0;
                                                 while($row = $res->fetchRow()) {
