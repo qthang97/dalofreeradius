@@ -4,9 +4,11 @@
 4. supervisor make process always start
 5. start docker-compose up -d
 
-run multi daloradius for Mac Authentication
-replication table edit slave server
+#run multi daloradius for Mac Authentication
+#replication table edit slave server
 replicate-do-table=radiusdb.operators
+replicate-do-table=radiusdb.operators_acl
+replicate-do-table=radiusdb.operators_acl_files
 replicate-do-table=radiusdb.radcheck
 replicate-do-table=radiusdb.radgroupcheck
 replicate-do-table=radiusdb.radusergroup
