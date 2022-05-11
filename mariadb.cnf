@@ -1,0 +1,36 @@
+# MariaDB-specific config file.
+# Read by /etc/mysql/my.cnf
+
+[client]
+# Default is Latin1, if you need UTF-8 set this (also in server section)
+#default-character-set = utf8
+
+[mysqld]
+#ID server
+server_id=2
+
+#replication table edit slave server
+replicate-do-table=radiusdb.operators
+replicate-do-table=radiusdb.operators_acl
+replicate-do-table=radiusdb.operators_acl_files
+replicate-do-table=radiusdb.radcheck
+replicate-do-table=radiusdb.radgroupcheck
+replicate-do-table=radiusdb.radusergroup
+replicate-do-table=radiusdb.userinfo
+
+#auto start slave
+skip-slave-start=false
+
+#fix error 1062
+slave-skip-errors=1062
+#
+# * Character sets
+#
+# Default is Latin1, if you need UTF-8 set all this (also in client section)
+#
+#character-set-server  = utf8
+#collation-server      = utf8_general_ci
+#character_set_server   = utf8
+#collation_server       = utf8_general_ci
+# Import all .cnf files from configuration directory
+!includedir /etc/mysql/mariadb.conf.d
