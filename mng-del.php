@@ -82,6 +82,8 @@
                 }
 		
 		$username=$arr;
+		
+		//delete user
 		foreach ($username as $variable=>$value) {
 
 			if (trim($variable) != "") {
