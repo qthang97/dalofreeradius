@@ -280,7 +280,7 @@
 
 		<label for='username' class='form'><?php echo t('all','Username')?></label>
 		<!--***********edit***********-->
-		<textarea name='csvdata' type='text' id='username' value='<?php echo $username ?>' tabindex=100 style="width:462px;height:297px;"></textarea>
+		<textarea class="form_fileimport" name='csvdata' type='text' id='username' value='<?php echo $username ?>' tabindex=100 style="width:462px;height:297px;"></textarea>
 		<br />
 
 		<label for='delradacct' class='form'><?php echo t('all','RemoveRadacctRecords')?></label>
