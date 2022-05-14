@@ -75,6 +75,12 @@
 				$i++;
 			}		
 		}
+		
+		//Array NULL
+		if(!$arr){
+                        $arr[$i]=NULL;
+                }
+		
 		$username=$arr;
 		foreach ($username as $variable=>$value) {
 
