@@ -18,6 +18,9 @@ replicate-do-table=radiusdb.radgroupcheck
 replicate-do-table=radiusdb.radusergroup
 replicate-do-table=radiusdb.userinfo
 
+#InnoDB: Missing MLOG_CHECKPOINT enable when mysql error and delete ib_logfile* in db folder
+#innodb_log_checksums = ON
+
 #auto start slave
 skip-slave-start=false
 
